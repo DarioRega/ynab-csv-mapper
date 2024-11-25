@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YNAB CSV Converter</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <span class="navbar-brand">YNAB CSV Converter</span>
+    <div class="d-flex">
+      <button id="loadDifferentFile" class="btn btn-info me-2">Load a different file</button>
+      <button id="saveYnabData" class="btn btn-success">Save YNAB Data</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5 pt-4">
+  <!-- File Upload Section -->
+  <div id="uploadSection">
+    <div id="dropZone" class="drop-zone">
+      <div id="uploadWrapper" class="text-center">
+        <div id="dropText" class="display-4 mb-4">Drop file</div>
+        <div class="mb-3">
+          <label class="btn btn-info">
+            Or choose
+            <input type="file" id="fileInput" class="d-none" accept=".csv">
+          </label>
+        </div>
+
+        <div class="config-section">
+          <div class="mb-3">
+            <label class="form-label">Character encoding</label>
+            <select id="encodingSelect" class="form-select"></select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Cell delimiter</label>
+            <select id="delimiterSelect" class="form-select"></select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Start at row</label>
+            <input type="number" id="startRow" class="form-control" value="1" min="1">
+          </div>
+
+          <div class="mb-3 form-check">
+            <input type="checkbox" id="extraRowCheck" class="form-check-input">
+            <label class="form-check-label">Fill header row from first line</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Converter Content Section (Initially Hidden) -->
+  <div id="converterContent" class="d-none">
+    <!-- Column Mapping Section -->
+    <div id="mappingSection" class="card mb-4">
+      <div class="card-header">
+        <h5 class="mb-0">Map CSV Fields to YNAB Fields</h5>
+      </div>
+      <div class="card-body">
+        <div id="mappingContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <!-- Mapping fields will be inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- YNAB Preview Section -->
+    <div id="previewSection" class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">YNAB Data Preview (first 10 rows)</h5>
+        <div>
+          <button id="invertFlows" class="btn btn-outline-secondary me-2">Invert flows</button>
+          <button id="toggleFormat" class="btn btn-outline-secondary">Toggle column format</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table id="previewTable" class="table">
+            <thead>
+            <tr id="headerRow"></tr>
+            </thead>
+            <tbody id="previewBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Source CSV Preview -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h5 class="mb-0">Source CSV Preview</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table id="sourceTable" class="table">
+            <thead>
+            <tr id="sourceHeaderRow"></tr>
+            </thead>
+            <tbody id="sourceBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
