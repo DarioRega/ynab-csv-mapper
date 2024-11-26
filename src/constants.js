@@ -11,5 +11,4 @@ export const ENCODINGS = [
 
 export const DELIMITERS = ["auto", ",", ";", "|"];
 
-export const OLD_YNAB_COLS = ["Date", "Payee", "Memo", "Outflow", "Inflow"];
-export const NEW_YNAB_COLS = ["Date", "Payee", "Memo", "Amount"];
+export const YNAB_COLS = ["Date", "Payee", "Memo", "Outflow", "Inflow"];
